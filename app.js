@@ -416,34 +416,62 @@ if (Meteor.isClient) {
 
             $scope.status = function () {
 
-                var validateType = $scope.parties[0].telValidate || $scope.parties[0].numberValidate || $scope.parties[0].countValidate
-                    || $scope.parties[0].pointsValidate || $scope.parties[0].typeValidate;
 
-                if (validateType )   //undefined || validateType
+                if($("#tel").val() .length == 0 )
                 {
-                    if($scope.parties[0].telValidate == undefined)
-                    {
-                        validate("tel", "不能为空", true);
-                    }
-                    if($scope.parties[0].numberValidate == undefined)
-                    {
-                        validate("number", "不能为空", true);
-                    }
-                    if($scope.parties[0].countValidate == undefined)
-                    {
-                        validate("count", "不能为空", true);
-                    }
-                    if($scope.parties[0].pointsValidate == undefined)
-                    {
-                        validate("points", "不能为空", true);
-                    }
-                    if($scope.parties[0].typeValidate == undefined)
-                    {
-                        validate("type", "不能为空", true);
-                    }
-
+                    validateType = false;
+                    validate("tel", "不能为空", true);
                 }
-                else {
+                else if($("#tel").val().length>11)
+                {
+                    validateType = false;
+                    validate("tel", "长度大于11位", true);
+                }
+                else if($("#tel").val().length<11)
+                {
+                    validateType = false;
+                    validate("tel", "长度小于11位", true);
+                }
+
+                if($("#number").val() .length == 0 )
+                {
+                    validateType = false;
+                    validate("number", "不能为空", true);
+                }
+                else if($("#number").val().length>6)
+                {
+                    validateType = false;
+                    validate("number", "长度大于6位", true);
+                }
+                else if($("#number").val().length<6)
+                {
+                    validateType = false;
+                    validate("number", "长度小于6位", true);
+                }
+
+                if($("#count").val().length == 0 )
+                {
+                    validateType = false;
+                    validate("count", "不能为空", true);
+                }
+
+
+                if($("#points").val() .length == 0 )
+                {
+                    validateType = false;
+                    validate("points", "不能为空", true);
+                }
+                else if(parseInt($("#points").val())>12)
+                {
+                    validateType = false;
+                    validate("points", "不能大于12的整数", true);
+                }
+
+
+                var validateType = $scope.parties[0].telValidate || $scope.parties[0].numberValidate || $scope.parties[0].countValidate
+                    || $scope.parties[0].pointsValidate ;
+
+                if(!validateType){
 
                     $(".form-group input").removeClass("inpCurrent");
                     Parties.update({_id: $scope.parties[0]._id}, {$set: {status: true}})
@@ -511,11 +539,11 @@ if (Meteor.isClient) {
                     }
                     else  if (len > 7 && thisId == "number") {
 
-                        validate(thisId, "车牌长度大于6位", true);
+                        validate(thisId, "长度大于6位", true);
                     }
                     else if (len < 7 && thisId == "number") {
 
-                        validate("number", "车牌长度不能小于6位", true);
+                        validate("number", "长度不能小于6位", true);
                     }
 
                     else {
@@ -793,34 +821,62 @@ if (Meteor.isClient) {
 
             $scope.status = function () {
 
-                var validateType = $scope.parties1[0].telValidate || $scope.parties1[0].numberValidate || $scope.parties1[0].countValidate
-                    || $scope.parties1[0].pointsValidate || $scope.parties1[0].typeValidate;
 
-                if (validateType )   //undefined || validateType
+                if($("#tel").val() .length == 0 )
                 {
-                    if($scope.parties1[0].telValidate == undefined)
-                    {
-                        validate("tel", "不能为空", true);
-                    }
-                    if($scope.parties1[0].numberValidate == undefined)
-                    {
-                        validate("number", "不能为空", true);
-                    }
-                    if($scope.parties1[0].countValidate == undefined)
-                    {
-                        validate("count", "不能为空", true);
-                    }
-                    if($scope.parties1[0].pointsValidate == undefined)
-                    {
-                        validate("points", "不能为空", true);
-                    }
-                    if($scope.parties1[0].typeValidate == undefined)
-                    {
-                        validate("type", "不能为空", true);
-                    }
-
+                    validateType = false;
+                    validate("tel", "不能为空", true);
                 }
-                else {
+                else if($("#tel").val().length>11)
+                {
+                    validateType = false;
+                    validate("tel", "长度大于11位", true);
+                }
+                else if($("#tel").val().length<11)
+                {
+                    validateType = false;
+                    validate("tel", "长度小于11位", true);
+                }
+
+                if($("#number").val() .length == 0 )
+                {
+                    validateType = false;
+                    validate("number", "不能为空", true);
+                }
+                else if($("#number").val().length>6)
+                {
+                    validateType = false;
+                    validate("number", "长度大于6位", true);
+                }
+                else if($("#number").val().length<6)
+                {
+                    validateType = false;
+                    validate("number", "长度小于6位", true);
+                }
+
+                if($("#count").val() .length == 0 )
+                {
+                    validateType = false;
+                    validate("count", "不能为空", true);
+                }
+
+
+                if($("#points").val() .length == 0 )
+                {
+                    validateType = false;
+                    validate("points", "不能为空", true);
+                }
+                else if(parseInt($("#points").val())>12)
+                {
+                    validateType = false;
+                    validate("points", "不能大于12的整数", true);
+                }
+
+
+                var validateType = $scope.parties1[0].telValidate || $scope.parties1[0].numberValidate || $scope.parties1[0].countValidate
+                    || $scope.parties1[0].pointsValidate ;
+
+                if(!validateType){
 
                     $(".form-group input").removeClass("inpCurrent");
                     Parties1.update({_id: $scope.parties1[0]._id}, {$set: {status: true}})
@@ -889,11 +945,11 @@ if (Meteor.isClient) {
                     }
                     else  if (len > 7 && thisId == "number") {
 
-                        validate(thisId, "车牌长度大于6位", true);
+                        validate(thisId, "长度大于6位", true);
                     }
                     else if (len < 7 && thisId == "number") {
 
-                        validate("number", "车牌长度不能小于6位", true);
+                        validate("number", "长度不能小于6位", true);
                     }
 
                     else {
@@ -1176,37 +1232,65 @@ if (Meteor.isClient) {
 
             $scope.status = function () {
 
-                var validateType = $scope.parties2[0].telValidate || $scope.parties2[0].numberValidate || $scope.parties2[0].countValidate
-                    || $scope.parties2[0].pointsValidate || $scope.parties2[0].typeValidate;
 
-                if (validateType )   //undefined || validateType
+                if($("#tel").val() .length == 0 )
                 {
-                    if($scope.parties2[0].telValidate == undefined)
-                    {
-                        validate("tel", "不能为空", true);
-                    }
-                    if($scope.parties2[0].numberValidate == undefined)
-                    {
-                        validate("number", "不能为空", true);
-                    }
-                    if($scope.parties2[0].countValidate == undefined)
-                    {
-                        validate("count", "不能为空", true);
-                    }
-                    if($scope.parties2[0].pointsValidate == undefined)
-                    {
-                        validate("points", "不能为空", true);
-                    }
-                    if($scope.parties2[0].typeValidate == undefined)
-                    {
-                        validate("type", "不能为空", true);
-                    }
-
+                    validateType = false;
+                    validate("tel", "不能为空", true);
                 }
-                else {
+                else if($("#tel").val().length>11)
+                {
+                    validateType = false;
+                    validate("tel", "长度大于11位", true);
+                }
+                else if($("#tel").val().length<11)
+                {
+                    validateType = false;
+                    validate("tel", "长度小于11位", true);
+                }
+
+                if($("#number").val() .length == 0 )
+                {
+                    validateType = false;
+                    validate("number", "不能为空", true);
+                }
+                else if($("#number").val().length>6)
+                {
+                    validateType = false;
+                    validate("number", "长度大于6位", true);
+                }
+                else if($("#number").val().length<6)
+                {
+                    validateType = false;
+                    validate("number", "长度小于6位", true);
+                }
+
+                if($("#count").val() .length == 0 )
+                {
+                    validateType = false;
+                    validate("count", "不能为空", true);
+                }
+
+
+                if($("#points").val() .length == 0)
+                {
+                    validateType = false;
+                    validate("points", "不能为空", true);
+                }
+                else if(parseInt($("#points").val())>12)
+                {
+                    validateType = false;
+                    validate("points", "不能大于12的整数", true);
+                }
+
+
+                var validateType = $scope.parties2[0].telValidate || $scope.parties2[0].numberValidate || $scope.parties2[0].countValidate
+                    || $scope.parties2[0].pointsValidate ;
+
+                if(!validateType){
 
                     $(".form-group input").removeClass("inpCurrent");
-                    parties2.update({_id: $scope.parties2[0]._id}, {$set: {status: true}})
+                    Parties2.update({_id: $scope.parties2[0]._id}, {$set: {status: true}})
                 }
             }
 
@@ -1271,11 +1355,11 @@ if (Meteor.isClient) {
                     }
                     else  if (len > 7 && thisId == "number") {
 
-                        validate(thisId, "车牌长度大于6位", true);
+                        validate(thisId, "长度大于6位", true);
                     }
                     else if (len < 7 && thisId == "number") {
 
-                        validate("number", "车牌长度不能小于6位", true);
+                        validate("number", "长度不能小于6位", true);
                     }
 
                     else {
@@ -1552,37 +1636,65 @@ if (Meteor.isClient) {
 
             $scope.status = function () {
 
-                var validateType = $scope.parties3[0].telValidate || $scope.parties3[0].numberValidate || $scope.parties3[0].countValidate
-                    || $scope.parties3[0].pointsValidate || $scope.parties3[0].typeValidate;
 
-                if (validateType )   //undefined || validateType
+                if($("#tel").val().length == 0 )
                 {
-                    if($scope.parties3[0].telValidate == undefined)
-                    {
-                        validate("tel", "不能为空", true);
-                    }
-                    if($scope.parties3[0].numberValidate == undefined)
-                    {
-                        validate("number", "不能为空", true);
-                    }
-                    if($scope.parties3[0].countValidate == undefined)
-                    {
-                        validate("count", "不能为空", true);
-                    }
-                    if($scope.parties3[0].pointsValidate == undefined)
-                    {
-                        validate("points", "不能为空", true);
-                    }
-                    if($scope.parties3[0].typeValidate == undefined)
-                    {
-                        validate("type", "不能为空", true);
-                    }
-
+                    validateType = false;
+                    validate("tel", "不能为空", true);
                 }
-                else {
+                else if($("#tel").val().length>11)
+                {
+                    validateType = false;
+                    validate("tel", "长度大于11位", true);
+                }
+                else if($("#tel").val().length<11)
+                {
+                    validateType = false;
+                    validate("tel", "长度小于11位", true);
+                }
+
+                if($("#number").val().length == 0 )
+                {
+                    validateType = false;
+                    validate("number", "不能为空", true);
+                }
+                else if($("#number").val().length>6)
+                {
+                    validateType = false;
+                    validate("number", "长度大于6位", true);
+                }
+                else if($("#number").val().length<6)
+                {
+                    validateType = false;
+                    validate("number", "长度小于6位", true);
+                }
+
+                if($("#count").val() .length == 0 )
+                {
+                    validateType = false;
+                    validate("count", "不能为空", true);
+                }
+
+
+                if($("#points").val() .length == 0 )
+                {
+                    validateType = false;
+                    validate("points", "不能为空", true);
+                }
+                else if(parseInt($("#points").val())>12)
+                {
+                    validateType = false;
+                    validate("points", "不能大于12的整数", true);
+                }
+
+
+                var validateType = $scope.parties3[0].telValidate || $scope.parties3[0].numberValidate || $scope.parties3[0].countValidate
+                    || $scope.parties3[0].pointsValidate ;
+
+                if(!validateType){
 
                     $(".form-group input").removeClass("inpCurrent");
-                    parties3.update({_id: $scope.parties3[0]._id}, {$set: {status: true}})
+                    Parties3.update({_id: $scope.parties3[0]._id}, {$set: {status: true}})
                 }
             }
 
@@ -1647,11 +1759,11 @@ if (Meteor.isClient) {
                     }
                     else  if (len > 7 && thisId == "number") {
 
-                        validate(thisId, "车牌长度大于6位", true);
+                        validate(thisId, "长度大于6位", true);
                     }
                     else if (len < 7 && thisId == "number") {
 
-                        validate("number", "车牌长度不能小于6位", true);
+                        validate("number", "长度不能小于6位", true);
                     }
 
                     else {
@@ -1927,37 +2039,67 @@ if (Meteor.isClient) {
 
             $scope.status = function () {
 
-                var validateType = $scope.parties4[0].telValidate || $scope.parties4[0].numberValidate || $scope.parties4[0].countValidate
-                    || $scope.parties4[0].pointsValidate || $scope.parties4[0].typeValidate;
 
-                if (validateType )   //undefined || validateType
+
+                if($("#tel").val().length == 0 )
                 {
-                    if($scope.parties4[0].telValidate == undefined)
-                    {
-                        validate("tel", "不能为空", true);
-                    }
-                    if($scope.parties4[0].numberValidate == undefined)
-                    {
-                        validate("number", "不能为空", true);
-                    }
-                    if($scope.parties4[0].countValidate == undefined)
-                    {
-                        validate("count", "不能为空", true);
-                    }
-                    if($scope.parties4[0].pointsValidate == undefined)
-                    {
-                        validate("points", "不能为空", true);
-                    }
-                    if($scope.parties4[0].typeValidate == undefined)
-                    {
-                        validate("type", "不能为空", true);
-                    }
-
+                    validateType = false;
+                    validate("tel", "不能为空", true);
                 }
-                else {
+                else if($("#tel").val().length>11)
+                {
+                    validateType = false;
+                    validate("tel", "长度大于11位", true);
+                }
+                else if($("#tel").val().length<11)
+                {
+                    validateType = false;
+                    validate("tel", "长度小于11位", true);
+                }
+
+                if($("#number").val().length == 0 )
+                {
+                    validateType = false;
+                    validate("number", "不能为空", true);
+                }
+                else if($("#number").val().trim().length>6)
+                {
+                    validateType = false;
+                    validate("number", "长度大于6位", true);
+                }
+                else if($("#number").val().trim().length<6)
+                {
+                    validateType = false;
+                    validate("number", "长度小于6位", true);
+                }
+
+                if($("#count").val().length == 0 )
+                {
+                    validateType = false;
+                    validate("count", "不能为空", true);
+                }
+
+
+                if($("#points").val().length == 0 )
+                {
+                    validateType = false;
+                    validate("points", "不能为空", true);
+                }
+                else if(parseInt($("#points").val())>12)
+                {
+                    validateType = false;
+                    validate("points", "不能大于12的整数", true);
+                }
+                 alert((parseInt($("#points").val())>12));
+                alert($scope.parties4[0].countValidate
+                    +"    "+ $scope.parties4[0].pointsValidate);
+                var validateType = $scope.parties4[0].telValidate || $scope.parties4[0].numberValidate || $scope.parties4[0].countValidate
+                    || $scope.parties4[0].pointsValidate ;
+
+                if(!validateType){
 
                     $(".form-group input").removeClass("inpCurrent");
-                    parties4.update({_id: $scope.parties4[0]._id}, {$set: {status: true}})
+                    Parties4.update({_id: $scope.parties4[0]._id}, {$set: {status: true}})
                 }
             }
 
@@ -2022,11 +2164,11 @@ if (Meteor.isClient) {
                     }
                     else  if (len > 7 && thisId == "number") {
 
-                        validate(thisId, "车牌长度大于6位", true);
+                        validate(thisId, "长度大于6位", true);
                     }
                     else if (len < 7 && thisId == "number") {
 
-                        validate("number", "车牌长度不能小于6位", true);
+                        validate("number", "长度不能小于6位", true);
                     }
 
                     else {
