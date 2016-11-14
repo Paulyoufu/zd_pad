@@ -411,9 +411,6 @@ if (Meteor.isClient) {
                 $scope.parties.remove();
                 dataRest();
                 $(".form-group input").removeClass("inpCurrent");
-                Session.set("inputVal", "");
-                Session.set("inputId","number");
-                $("#number").addClass("inpCurrent");
             };
 
 
@@ -435,12 +432,6 @@ if (Meteor.isClient) {
                     validateType = false;
                     validate("tel", "长度小于11位", true);
                 }
-                else if($("#tel").val().length==11)
-                {
-                    validateType = false;
-                    validate("tel", "", true);
-                }
-
 
                 if($("#number").val() .length == 0 )
                 {
@@ -452,7 +443,6 @@ if (Meteor.isClient) {
                     validateType = false;
                     validate("number", "长度大于6位", true);
                 }
-
                 else if($("#number").val().length<6)
                 {
                     validateType = false;
@@ -581,12 +571,10 @@ if (Meteor.isClient) {
                     else if (thisId == "count" && Number($scope.parties[0].count) > 12) {
                         //  validate(thisId, "不能大于12的整数", true);
                     }
-                    else if(thisId == "count" && len <2){  validate(thisId, "不能为空", true);}
-                  //  else if (thisId == "points" && Number($scope.parties[0].points) > 12) {
-                  //      validate(thisId, "不能大于12的整数", true);
-                  //  }
-                    else if(thisId == "points" && len <2){  validate(thisId, "不能为空", true);}
-                   else {
+                    else if (thisId == "points" && Number($scope.parties[0].points) > 12) {
+                        validate(thisId, "不能大于12的整数", true);
+                    }
+                    else {
                         validate("tel", "", false);
                         Session.set("validate", false);
                     }
@@ -614,10 +602,6 @@ if (Meteor.isClient) {
 
                         validate(thisId, "长度不能小于6位", true);
                     }
-                    else if (len == 5 && thisId == "number") {
-
-                        validate(thisId, "", true);
-                    }
                     else if (len < 10 && thisId == "tel") {
 
                         validate(thisId, "长度不能小于11位 ", true);
@@ -626,25 +610,20 @@ if (Meteor.isClient) {
 
                         validate(thisId, "长度不能大于11位", true);
                     }
-                    else if (len == 10 && thisId == "tel") {
+                    else if (len == 11 && thisId == "tel") {
 
                         validate(thisId, "", false);
                     }
                     else if (thisId == "count" && Number($scope.parties[0].count) > 12) {
                         //  validate(thisId, "不能大于12的整数", true);
                     }
-                   else if (thisId == "points" && Number($scope.parties[0].points) > 12) {
-                       validate(thisId, "不能大于12的整数", true);
-                   }
-                    else if (thisId == "count" && len == 0) {
-                         validate(thisId, "", true);
+                    else if (thisId == "points" && Number($scope.parties[0].points) > 12) {
+                        validate(thisId, "不能大于12的整数", true);
                     }
-                    else if (thisId == "points" && len == 0) {
-                        validate(thisId, "", true);}
-                  ///  else {
-                  ///      validate(thisId, "", false);
-                  //      Session.set("validate", false);
-                   // }
+                    else {
+                        validate(thisId, "", false);
+                        Session.set("validate", false);
+                    }
                 }
 
             })
@@ -837,9 +816,6 @@ if (Meteor.isClient) {
                 $scope.parties1.remove();
                 dataRest();
                 $(".form-group input").removeClass("inpCurrent");
-                Session.set("inputVal1", "");
-                Session.set("inputId1","number");
-                $("#number").addClass("inpCurrent");
             };
 
 
@@ -878,22 +854,18 @@ if (Meteor.isClient) {
                     validate("number", "长度小于6位", true);
                 }
 
-                if($("#count").val().length == 0 )
+                if($("#count").val() .length == 0 )
                 {
                     validateType = false;
                     validate("count", "不能为空", true);
                 }
 
 
-                if($("#points").val() .length == 0)
+                if($("#points").val() .length == 0 )
                 {
                     validateType = false;
                     validate("points", "不能为空", true);
                 }
-
-
-
-
                 else if(parseInt($("#points").val())>12)
                 {
                     validateType = false;
@@ -1005,14 +977,13 @@ if (Meteor.isClient) {
                     else if (thisId == "count" && Number($scope.parties1[0].count) > 12) {
                         //  validate(thisId, "不能大于12的整数", true);
                     }
-
-                    else if(thisId == "count" && len <2){  validate(thisId, "不能为空", true);}
-
-                    else if(thisId == "points" && len <2){  validate(thisId, "不能为空", true);}
-                 //   else {
-                      //  validate("tel", "", false);
-                     //   Session.set("validate1", false);
-                 //   }
+                    else if (thisId == "points" && Number($scope.parties1[0].points) > 12) {
+                        validate(thisId, "不能大于12的整数", true);
+                    }
+                    else {
+                        validate("tel", "", false);
+                        Session.set("validate1", false);
+                    }
                 }
 
                 else {
@@ -1037,10 +1008,6 @@ if (Meteor.isClient) {
 
                         validate(thisId, "长度不能小于6位", true);
                     }
-                    else if (len == 5 && thisId == "number") {
-
-                        validate(thisId, "", true);
-                    }
                     else if (len < 10 && thisId == "tel") {
 
                         validate(thisId, "长度不能小于11位 ", true);
@@ -1049,7 +1016,7 @@ if (Meteor.isClient) {
 
                         validate(thisId, "长度不能大于11位", true);
                     }
-                    else if (len == 10 && thisId == "tel") {
+                    else if (len == 11 && thisId == "tel") {
 
                         validate(thisId, "", false);
                     }
@@ -1059,14 +1026,9 @@ if (Meteor.isClient) {
                     else if (thisId == "points" && Number($scope.parties1[0].points) > 12) {
                         validate(thisId, "不能大于12的整数", true);
                     }
-                    else if (thisId == "count" && len == 0) {
-                          validate(thisId, "", true);
-                    }
-                    else if (thisId == "points" && len == 0) {
-                        validate(thisId, "", true);}
                     else {
-                       validate(thisId, "", false);
-                    //    Session.set("validate1", false);
+                        validate(thisId, "", false);
+                        Session.set("validate1", false);
                     }
                 }
 
@@ -1265,16 +1227,13 @@ if (Meteor.isClient) {
                 $scope.parties2.remove();
                 dataRest();
                 $(".form-group input").removeClass("inpCurrent");
-                Session.set("inputVal2", "");
-                Session.set("inputId2","number");
-                $("#number").addClass("inpCurrent");
             };
 
 
             $scope.status = function () {
 
 
-                if($("#tel").val().length == 0 )
+                if($("#tel").val() .length == 0 )
                 {
                     validateType = false;
                     validate("tel", "不能为空", true);
@@ -1290,7 +1249,7 @@ if (Meteor.isClient) {
                     validate("tel", "长度小于11位", true);
                 }
 
-                if($("#number").val().length == 0 )
+                if($("#number").val() .length == 0 )
                 {
                     validateType = false;
                     validate("number", "不能为空", true);
@@ -1306,7 +1265,7 @@ if (Meteor.isClient) {
                     validate("number", "长度小于6位", true);
                 }
 
-                if($("#count").val().length == 0 )
+                if($("#count").val() .length == 0 )
                 {
                     validateType = false;
                     validate("count", "不能为空", true);
@@ -1349,7 +1308,7 @@ if (Meteor.isClient) {
                 Session.set("inputVal2", $(this).val());
                 $(".form-group input").removeClass("inpCurrent");
                 var inp = $("#" + Session.get("inputId2"));
-              //  alert( Session.get("inputId2"));
+                //  alert( Session.get("inputId2"));
                 inp.addClass("inpCurrent");
                 if (id == 'number') {
                     Session.set("keystatus2", false);
@@ -1429,16 +1388,12 @@ if (Meteor.isClient) {
                         //  validate(thisId, "不能大于12的整数", true);
                     }
                     else if (thisId == "points" && Number($scope.parties2[0].points) > 12) {
-                        validate(thisId, "不能大于12的整数", true);}
-                    else if(thisId == "count" && len <2){  validate(thisId, "不能为空", true);}
-                  //  else if (thisId == "points" && Number($scope.parties[0].points) > 12) {
-                   //     validate(thisId, "不能大于12的整数", true);
-                  //  }
-                    else if(thisId == "points" && len <2){  validate(thisId, "不能为空", true);}
-                   // else {
-                     //   validate("tel", "", false);
-                       // Session.set("validate2", false);
-                    //}
+                        validate(thisId, "不能大于12的整数", true);
+                    }
+                    else {
+                        validate("tel", "", false);
+                        Session.set("validate2", false);
+                    }
                 }
 
                 else {
@@ -1463,20 +1418,15 @@ if (Meteor.isClient) {
 
                         validate(thisId, "长度不能小于6位", true);
                     }
-                    else if (len == 5 && thisId == "number") {
-
-                        validate(thisId, "", true);
-                    }
                     else if (len < 10 && thisId == "tel") {
 
                         validate(thisId, "长度不能小于11位 ", true);
                     }
-
                     else if (len > 10 && thisId == "tel") {
 
                         validate(thisId, "长度不能大于11位", true);
                     }
-                    else if (len == 10 && thisId == "tel") {
+                    else if (len == 11 && thisId == "tel") {
 
                         validate(thisId, "", false);
                     }
@@ -1486,11 +1436,9 @@ if (Meteor.isClient) {
                     else if (thisId == "points" && Number($scope.parties2[0].points) > 12) {
                         validate(thisId, "不能大于12的整数", true);
                     }
-                    else if (thisId == "count" && len == 0) {
-                          validate(thisId, "", true);
-                    }
-                    else if (thisId == "points" && len == 0) {
-                        validate(thisId, "", true);
+                    else {
+                        validate(thisId, "", false);
+                        Session.set("validate2", false);
                     }
                 }
 
@@ -1683,9 +1631,6 @@ if (Meteor.isClient) {
                 $scope.parties3.remove();
                 dataRest();
                 $(".form-group input").removeClass("inpCurrent");
-                Session.set("inputVal3", "");
-                Session.set("inputId3","number");
-                $("#number").addClass("inpCurrent");
             };
 
 
@@ -1846,16 +1791,13 @@ if (Meteor.isClient) {
                     else if (thisId == "count" && Number($scope.parties3[0].count) > 12) {
                         //  validate(thisId, "不能大于12的整数", true);
                     }
-
-                    else if(thisId == "count" && len <2){  validate(thisId, "不能为空", true);}
-                   // else if (thisId == "points" && parseInt($scope.parties[0].points)<= 12) {
-                 //       validate(thisId, "", true);
-                 //   }
-                    else if(thisId == "points" && len <2){  validate(thisId, "不能为空", true);}
-                  //  else {
-                    //    validate("tel", "", false);
-                     //   Session.set("validate3", false);
-                    //}
+                    else if (thisId == "points" && Number($scope.parties3[0].points) > 12) {
+                        validate(thisId, "不能大于12的整数", true);
+                    }
+                    else {
+                        validate("tel", "", false);
+                        Session.set("validate3", false);
+                    }
                 }
 
                 else {
@@ -1880,10 +1822,6 @@ if (Meteor.isClient) {
 
                         validate(thisId, "长度不能小于6位", true);
                     }
-                    else  if (len ==5  && thisId == "number") {
-
-                        validate(thisId, "", true);
-                    }
                     else if (len < 10 && thisId == "tel") {
 
                         validate(thisId, "长度不能小于11位 ", true);
@@ -1892,7 +1830,7 @@ if (Meteor.isClient) {
 
                         validate(thisId, "长度不能大于11位", true);
                     }
-                    else if (len == 10 && thisId == "tel") {
+                    else if (len == 11 && thisId == "tel") {
 
                         validate(thisId, "", false);
                     }
@@ -1902,12 +1840,10 @@ if (Meteor.isClient) {
                     else if (thisId == "points" && Number($scope.parties3[0].points) > 12) {
                         validate(thisId, "不能大于12的整数", true);
                     }
-
-                    else if (thisId == "count" && len == 0) {
-                        validate(thisId, "", true);
+                    else {
+                        validate(thisId, "", false);
+                        Session.set("validate3", false);
                     }
-                    else if (thisId == "points" && len == 0) {
-                        validate(thisId, "", true);}
                 }
 
             })
@@ -2098,9 +2034,6 @@ if (Meteor.isClient) {
                 $scope.parties4.remove();
                 dataRest();
                 $(".form-group input").removeClass("inpCurrent");
-                Session.set("inputVal4", "");
-                Session.set("inputId4","number");
-                $("#number").addClass("inpCurrent");
             };
 
 
@@ -2157,9 +2090,9 @@ if (Meteor.isClient) {
                     validateType = false;
                     validate("points", "不能大于12的整数", true);
                 }
-              //   alert((parseInt($("#points").val())>12));
-                //alert($scope.parties4[0].countValidate
-                  //  +"    "+ $scope.parties4[0].pointsValidate);
+                // alert((parseInt($("#points").val())>12));
+                //   alert($scope.parties4[0].countValidate
+                //     +"    "+ $scope.parties4[0].pointsValidate);
                 var validateType = $scope.parties4[0].telValidate || $scope.parties4[0].numberValidate || $scope.parties4[0].countValidate
                     || $scope.parties4[0].pointsValidate ;
 
@@ -2260,19 +2193,16 @@ if (Meteor.isClient) {
 
                         validate(thisId, "", false);
                     }
-                    else if(thisId == "count" && len <2){  validate(thisId, "不能为空", true);}
                     else if (thisId == "count" && Number($scope.parties4[0].count) > 12) {
                         //  validate(thisId, "不能大于12的整数", true);
                     }
-
-
-                    else if(thisId == "points" && len <2 ){
-
-                        validate(thisId, "不能为空", true);}
-               //    else if (thisId == "points" ) {
-                   //     validate(thisId, "不能大于12的整数", true);
-                //   }
-
+                    else if (thisId == "points" && Number($scope.parties4[0].points) > 12) {
+                        validate(thisId, "不能大于12的整数", true);
+                    }
+                    else {
+                        validate("tel", "", false);
+                        Session.set("validate4", false);
+                    }
                 }
 
                 else {
@@ -2297,10 +2227,6 @@ if (Meteor.isClient) {
 
                         validate(thisId, "长度不能小于6位", true);
                     }
-                    else if (len == 5 && thisId == "number") {
-
-                        validate(thisId, "", true);
-                    }
                     else if (len < 10 && thisId == "tel") {
 
                         validate(thisId, "长度不能小于11位 ", true);
@@ -2309,7 +2235,7 @@ if (Meteor.isClient) {
 
                         validate(thisId, "长度不能大于11位", true);
                     }
-                    else if (len == 10 && thisId == "tel") {
+                    else if (len == 11 && thisId == "tel") {
 
                         validate(thisId, "", false);
                     }
@@ -2319,11 +2245,10 @@ if (Meteor.isClient) {
                     else if (thisId == "points" && Number($scope.parties4[0].points) > 12) {
                         validate(thisId, "不能大于12的整数", true);
                     }
-                    else if (thisId == "count" && len == 0) {
-                        validate(thisId, "", true);
+                    else {
+                        validate(thisId, "", false);
+                        Session.set("validate4", false);
                     }
-                    else if (thisId == "points" && len == 0) {
-                        validate(thisId, "", true);}
                 }
 
             })
@@ -2455,28 +2380,28 @@ if (Meteor.isClient) {
 
             dataRest = function () {
                 var parties4 = [{
-                        'provice': '黑',
-                        'number': '',
-                        'count': '',
-                        'points': '',
-                        'telnumber': '',
-                        'smallCar': true,
-                        'middleCar':false,
-                        'bigCar': false,
-                        'otherType': '卡车',
-                        'typeValidate': false,
-                        'numberValidate': false,
-                        'countValidate': false,
-                        'pointsValidate': false,
-                        'telValidate': false,
-                        'carNumVal': "超出长度",
-                        'telVal': "电话号超出长度",
-                        'pointsVal': "0-12分之间",
-                        'carTypeVal': '车的类型',
-                        'countVal': "不能为空",
-                        'policeIsOk':'false',
-                        'status':false
-                    }];
+                    'provice': '黑',
+                    'number': '',
+                    'count': '',
+                    'points': '',
+                    'telnumber': '',
+                    'smallCar': true,
+                    'middleCar':false,
+                    'bigCar': false,
+                    'otherType': '卡车',
+                    'typeValidate': false,
+                    'numberValidate': false,
+                    'countValidate': false,
+                    'pointsValidate': false,
+                    'telValidate': false,
+                    'carNumVal': "超出长度",
+                    'telVal': "电话号超出长度",
+                    'pointsVal': "0-12分之间",
+                    'carTypeVal': '车的类型',
+                    'countVal': "不能为空",
+                    'policeIsOk':'false',
+                    'status':false
+                }];
                 // Session.set("inputVal","");
 
                 if(Parties4.find().count() === 0)
@@ -2484,7 +2409,7 @@ if (Meteor.isClient) {
                     for (var i = 0; i < parties4.length; i++)
                     {
                         Parties4.insert(parties4[i]);
-                      // alert(parties4[i]+"  parties4");
+                        // alert(parties4[i]+"  parties4");
                     }
                 }
 
@@ -2500,10 +2425,10 @@ if (Meteor.isClient) {
     }
 
 
-  //  if (Meteor.isCordova)
-  //      angular.element(document).on("deviceready", onReady);
-  //  else
-  //      angular.element(document).ready(onReady);
+    //  if (Meteor.isCordova)
+    //      angular.element(document).on("deviceready", onReady);
+    //  else
+    //      angular.element(document).ready(onReady);
 }
 
 
@@ -2531,19 +2456,19 @@ if (Meteor.isServer) {
             switch(pcNumber)
             {
                 case "parties":
-                    Parties.Remove({});
+                    Parties.remove({});
                     break;
                 case "parties1":
-                    Parties1.Remove({});
+                    Parties1.remove({});
                     break;
                 case "parties2":
-                    Parties2.Remove({});
+                    Parties2.remove({});
                     break;
                 case "parties3":
-                    Parties3.Remove({});
+                    Parties3.remove({});
                     break;
                 case "parties4":
-                    Parties4.Remove({});
+                    Parties4.remove({});
                     break;
             }
         }
@@ -2553,11 +2478,11 @@ if (Meteor.isServer) {
     Meteor.startup(function () {
         var parties =
             [{
-                'provice': '黑1',
-                'number': ' 1',
-                'count': '1 ',
-                'points': ' 1',
-                'telnumber': '1 ',
+                'provice': '黑',
+                'number': ' ',
+                'count': ' ',
+                'points': ' ',
+                'telnumber': ' ',
                 'smallCar': true,
                 'middleCar':false,
                 'bigCar': false,
@@ -2575,7 +2500,7 @@ if (Meteor.isServer) {
                 'policeIsOk':'false',
                 'status':false
             }
-        ];
+            ];
 
         if(Parties.find().count() === 0)
         {
@@ -2585,11 +2510,11 @@ if (Meteor.isServer) {
 
         var parties1 =
             [{
-                'provice': '2黑',
-                'number': '2 ',
-                'count': ' 2',
-                'points': ' 2',
-                'telnumber': '2 ',
+                'provice': '黑',
+                'number': ' ',
+                'count': ' ',
+                'points': ' ',
+                'telnumber': ' ',
                 'smallCar': true,
                 'middleCar':false,
                 'bigCar': false,
@@ -2618,11 +2543,11 @@ if (Meteor.isServer) {
 
         var parties2 =
             [{
-                'provice': '2黑',
-                'number': '2 ',
-                'count': ' 2',
-                'points': ' 2',
-                'telnumber': '2 ',
+                'provice': '黑',
+                'number': ' ',
+                'count': ' ',
+                'points': ' ',
+                'telnumber': ' ',
                 'smallCar': true,
                 'middleCar':false,
                 'bigCar': false,
@@ -2650,11 +2575,11 @@ if (Meteor.isServer) {
 
         var parties3 =
             [{
-                'provice': '4黑',
-                'number': '4',
-                'count': '4',
-                'points': '4',
-                'telnumber': '4',
+                'provice': '黑',
+                'number': ' ',
+                'count': ' ',
+                'points': ' ',
+                'telnumber': ' ',
                 'smallCar': true,
                 'middleCar':false,
                 'bigCar': false,
@@ -2682,11 +2607,11 @@ if (Meteor.isServer) {
 
         var parties4 =
             [{
-                'provice': '5黑',
-                'number': '5',
-                'count': '5',
-                'points': '5',
-                'telnumber': '5',
+                'provice': '黑',
+                'number': ' ',
+                'count': ' ',
+                'points': ' ',
+                'telnumber': ' ',
                 'smallCar': true,
                 'middleCar':false,
                 'bigCar': false,
@@ -2751,7 +2676,7 @@ if (Meteor.isServer) {
     Meteor.methods({
         updateTask: function(data,fields,dataId,pcNumber) {
             //  var arr = data.split("");
-            console.log(pcNumber+"----------"+pcNumber+"   "+fields);
+            console.log(pcNumber+"----------"+pcNumber);
             switch(pcNumber)
             {
                 case "parties":
@@ -2789,16 +2714,6 @@ if (Meteor.isServer) {
                             break;
                         case "carNumVal":
                             Parties.update({_id:dataId},{$set:{carNumVal:""}});
-                            break;
-                        case "telVal":
-                            Parties.update({_id:dataId},{$set:{telVal:""}});
-                            break;
-                        case "countVal":
-                            Parties.update({_id:dataId},{$set:{countVal:""}});
-                            break;
-                        case "pointsVal":
-                            Parties.update({_id:dataId},{$set:{pointsVal:""}});
-                            break;
                     }
                     break;
                 case "parties1":
@@ -2836,16 +2751,6 @@ if (Meteor.isServer) {
                             break;
                         case "carNumVal":
                             Parties1.update({_id:dataId},{$set:{carNumVal:""}});
-                            break;//telVal
-                        case "telVal":
-                            Parties1.update({_id:dataId},{$set:{telVal:""}});
-                            break;//telVa
-                        case "countVal":
-                            Parties1.update({_id:dataId},{$set:{countVal:""}});
-                            break;
-                        case "pointsVal":
-                            Parties1.update({_id:dataId},{$set:{pointsVal:""}});
-                            break;
                     }
                     break;
                 case "parties2":
@@ -2883,16 +2788,6 @@ if (Meteor.isServer) {
                             break;
                         case "carNumVal":
                             Parties2.update({_id:dataId},{$set:{carNumVal:""}});
-                            break;
-                        case "telValVal":
-                            Parties2.update({_id:dataId},{$set:{telVal:""}});
-                            break;
-                        case "count":
-                            Parties2.update({_id:dataId},{$set:{countVal:""}});
-                            break;
-                        case "pointsVal":
-                            Parties2.update({_id:dataId},{$set:{pointsVal:""}});
-                            break;
                     }
                     break;
                 case "parties3":
@@ -2930,16 +2825,6 @@ if (Meteor.isServer) {
                             break;
                         case "carNumVal":
                             Parties3.update({_id:dataId},{$set:{carNumVal:""}});
-                            break;
-                        case "telVal":
-                            Parties3.update({_id:dataId},{$set:{telVal:""}});
-                            break;
-                        case "countVal":
-                            Parties3.update({_id:dataId},{$set:{countVal:""}});
-                            break;
-                        case "pointsVal":
-                            Parties3.update({_id:dataId},{$set:{pointsVal:""}});
-                            break;
                     }
                     break;
                 case "parties4":
@@ -2977,16 +2862,6 @@ if (Meteor.isServer) {
                             break;
                         case "carNumVal":
                             Parties4.update({_id:dataId},{$set:{carNumVal:""}});
-                            break;
-                        case "telVal":
-                            Parties4.update({_id:dataId},{$set:{telVal:""}});
-                            break;
-                        case "countVal":
-                            Parties4.update({_id:dataId},{$set:{countVal:""}});
-                            break;
-                        case "pointsVal":
-                            Parties4.update({_id:dataId},{$set:{pointsVal:""}});
-                            break;
                     }
                     break;
             }
